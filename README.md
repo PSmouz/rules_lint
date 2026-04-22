@@ -40,9 +40,9 @@ Linters which are not language-specific:
 | GraphQL                | [Prettier]                |                                                         |
 | HCL (Hashicorp Config) | [terraform] fmt           |                                                         |
 | HTML                   | [Prettier]                |                                                         |
-| JSON                   | [Prettier]                |                                                         |
+| JSON                   | [Prettier] or [oxfmt]     |                                                         |
 | Java                   | [google-java-format]      | [pmd] , [Checkstyle], [Spotbugs]                        |
-| JavaScript             | [Prettier]                | [ESLint]                                                |
+| JavaScript             | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
 | HTML templates         | [djlint]                  |                                                         |
 | Jsonnet                | [jsonnetfmt]              |                                                         |
 | Kotlin                 | [ktfmt]                   | [ktlint]                                                |
@@ -59,8 +59,9 @@ Linters which are not language-specific:
 | Starlark               | [Buildifier]              | [Buildifier]                                            |
 | Swift                  | [SwiftFormat] (1)         |                                                         |
 | TOML                   | [taplo]                   |                                                         |
-| TSX                    | [Prettier]                | [ESLint]                                                |
-| TypeScript             | [Prettier]                | [ESLint]                                                |
+| TSX                    | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
+| TypeScript             | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
+| Vue                    | [oxfmt]                   |                                                         |
 | YAML                   | [yamlfmt]                 | [yamllint]                                              |
 | XML                    | [prettier/plugin-xml]     |                                                         |
 
@@ -74,6 +75,8 @@ Linters which are not language-specific:
 [spotbugs]: https://spotbugs.github.io/
 [buf lint]: https://buf.build/docs/lint/overview
 [eslint]: https://eslint.org/
+[oxfmt]: https://oxc.rs/docs/guide/usage/formatter.html
+[oxlint]: https://oxc.rs/docs/guide/usage/linter.html
 [swiftformat]: https://github.com/nicklockwood/SwiftFormat
 [terraform]: https://github.com/hashicorp/terraform
 [buf]: https://docs.buf.build/format/usage

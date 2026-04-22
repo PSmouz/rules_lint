@@ -47,6 +47,9 @@ var multi_issue_patch []byte
 //go:embed testdata/lint_result/eslint_output.txt
 var eslint_output string
 
+//go:embed testdata/lint_result/oxlint_output.txt
+var oxlint_output string
+
 //go:embed testdata/lint_result/clang_tidy_output.txt
 var clang_tidy_output string
 

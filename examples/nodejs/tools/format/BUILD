@@ -17,7 +17,7 @@ format_multirun(
     name = "format",
     css = ":prettier",  # css includes Less and SCSS
     html = ":prettier",
-    javascript = ":prettier",
+    javascript = "@aspect_rules_lint//format:oxfmt",
     markdown = ":prettier",
     visibility = ["//:__subpackages__"],
 )

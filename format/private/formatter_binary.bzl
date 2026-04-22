@@ -40,6 +40,7 @@ TOOLS = {
 
 # Provided to make install more convenient
 BUILTIN_TOOL_LABELS = {
+    "JavaScript": "@multitool//tools/oxfmt",
     "CUE": "@multitool//tools/cue",
     "Jsonnet": "@multitool//tools/jsonnetfmt",
     "Go": "@multitool//tools/gofumpt",
@@ -53,6 +54,7 @@ BUILTIN_TOOL_LABELS = {
 CHECK_FLAGS = {
     "buildifier": "-mode=check",
     "cue-fmt": "fmt --check",
+    "oxfmt": "--check",
     "swiftformat": "--lint",
     "prettier": "--check --log-level=warn",
     "ruff": "format --check --force-exclude --diff",
@@ -79,6 +81,7 @@ CHECK_FLAGS = {
 FIX_FLAGS = {
     "buildifier": "-mode=fix",
     "cue-fmt": "fmt",
+    "oxfmt": "--write",
     "djlint": "--format-css --format-js --reformat",
     "swiftformat": "",
     "prettier": "--write --log-level=warn",
@@ -124,3 +127,16 @@ def to_attribute_name(lang):
     if lang == "F#":
         return "fsharp"
     return lang.lower().replace(" ", "_")
+
+def resolve_tool_name(lang, tool_label):
+    """Resolve the formatter CLI semantics for a tool label.
+
+    Most languages use the default tool name from `TOOLS`. A small number of
+    built-in or wrapped tools expose a different target name than the CLI they
+    emulate, so we only switch behavior when the label name matches a known
+    formatter with distinct flags.
+    """
+    label_name = str(tool_label).split(":")[-1]
+    if label_name in CHECK_FLAGS:
+        return label_name
+    return TOOLS[lang]

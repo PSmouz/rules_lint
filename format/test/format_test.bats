@@ -27,6 +27,19 @@ bats_load_library "bats-assert"
     refute_output --partial "file.ts"
 }
 
+@test "should run oxfmt on javascript-family files" {
+    run bazel run //format/test:format_with_oxfmt_JavaScript_with_oxfmt
+    assert_success
+
+    assert_output --partial "+ oxfmt --write examples/nodejs/eslint.config.mjs"
+    assert_output --partial "+ oxfmt --write examples/nodejs/src/(special_char)/[square]/hello.ts examples/nodejs/src/file-dep.ts examples/nodejs/src/file.ts examples/nodejs/src/oxlint.ts"
+    assert_output --partial "+ oxfmt --write examples/nodejs/src/hello.tsx"
+    assert_output --partial "+ oxfmt --write examples/nodejs/src/hello.vue"
+    assert_output --partial "+ oxfmt --write .bcr/metadata.template.json"
+    assert_output --partial "+ oxfmt --write examples/nodejs/.swcrc"
+    assert_output --partial "+ oxfmt --write examples/other_formatters/src/config.json5"
+}
+
 @test "should run buildozer on starlark" {
     run bazel run //format/test:format_Starlark_with_buildifier
     assert_success

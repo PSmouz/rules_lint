@@ -1,5 +1,49 @@
 {
   "$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+  "oxlint": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxlint-aarch64-unknown-linux-musl.tar.gz",
+        "file": "oxlint-aarch64-unknown-linux-musl",
+        "sha256": "86bee8156ee4fccd3232f51ab7526ab2bd48cd50efb0bdc6210790d192cd99a7",
+        "os": "linux",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxlint-x86_64-unknown-linux-musl.tar.gz",
+        "file": "oxlint-x86_64-unknown-linux-musl",
+        "sha256": "b71b9657ce73a7564d8b308447bf2efab9091d6f68fcc87b8640817ceca753f8",
+        "os": "linux",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxlint-aarch64-apple-darwin.tar.gz",
+        "file": "oxlint-aarch64-apple-darwin",
+        "sha256": "9ddaf6182b3516019e56fc84e29f8a0783129c37a440708e2c8fa13b5dc7f6dd",
+        "os": "macos",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxlint-x86_64-apple-darwin.tar.gz",
+        "file": "oxlint-x86_64-apple-darwin",
+        "sha256": "12986319866908811da7db527969c158fc7f07efa362b931e02877d82ba1f984",
+        "os": "macos",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxlint-x86_64-pc-windows-msvc.zip",
+        "file": "oxlint-x86_64-pc-windows-msvc.exe",
+        "sha256": "88b58d69c201c0d3c3f28608280466003c0bc781eac897de2f63877e26409164",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
   "ruff": {
     "binaries": [
       {

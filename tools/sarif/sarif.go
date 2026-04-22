@@ -57,6 +57,11 @@ func ToSarifJsonString(label string, mnemonic string, report string) (sarifJsonS
 		}
 	case "AspectRulesLintESLint":
 		fm = fmts.DefinedFmts()["eslint-compact"].Errorformat
+	case "AspectRulesLintOxlint":
+		fm = []string{
+			`%f:%l:%c: %m`,
+			`%-G%.%#`,
+		}
 	case "AspectRulesLintFlake8":
 		fm = fmts.DefinedFmts()["flake8"].Errorformat
 	case "AspectRulesLintPMD":

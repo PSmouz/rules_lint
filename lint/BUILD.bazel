@@ -10,6 +10,11 @@ exports_files(glob(["*.bzl"]) + ["lint_test.sh"])
 
 # Aliases for the built-in linters
 alias(
+    name = "oxlint_bin",
+    actual = "@multitool//tools/oxlint",
+)
+
+alias(
     name = "ruff_bin",
     actual = "@multitool//tools/ruff",
 )
@@ -133,6 +138,17 @@ bzl_library(
 bzl_library(
     name = "eslint",
     srcs = ["eslint.bzl"],
+    deps = [
+        "//lint/private:lint_aspect",
+        "//lint/private:patcher_action",
+        "@aspect_rules_js//js:libs",
+        "@bazel_lib//lib:copy_to_bin",
+    ],
+)
+
+bzl_library(
+    name = "oxlint",
+    srcs = ["oxlint.bzl"],
     deps = [
         "//lint/private:lint_aspect",
         "//lint/private:patcher_action",

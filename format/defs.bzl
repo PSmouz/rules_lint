@@ -18,7 +18,7 @@ load("@bazel_lib//lib:lists.bzl", "unique")
 load("@bazel_lib//lib:utils.bzl", "propagate_common_rule_attributes", "propagate_common_test_rule_attributes")
 load("@rules_multirun//:defs.bzl", "command", "multirun")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
-load("//format/private:formatter_binary.bzl", "BUILTIN_TOOL_LABELS", "CHECK_FLAGS", "FIX_FLAGS", "TOOLS", "to_attribute_name")
+load("//format/private:formatter_binary.bzl", "BUILTIN_TOOL_LABELS", "CHECK_FLAGS", "FIX_FLAGS", "TOOLS", "resolve_tool_name", "to_attribute_name")
 
 def _format_attr_factory(target_name, lang, toolname, tool_label, mode, disable_git_attribute_checks, custom_args = None):
     if mode not in ["check", "fix", "test"]:
@@ -218,6 +218,7 @@ def _tools_loop(name, kwargs):
             continue
 
         tool_label = kwargs.pop(lang_attribute)
+        toolname = resolve_tool_name(lang, tool_label)
         target_name = "_".join([name, lang.replace(" ", "_"), "with", toolname])
 
         # Extract custom args for this language

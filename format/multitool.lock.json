@@ -127,6 +127,50 @@
       }
     ]
   },
+  "oxfmt": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxfmt-aarch64-unknown-linux-musl.tar.gz",
+        "file": "oxfmt-aarch64-unknown-linux-musl",
+        "sha256": "12e80cedfc5e9a7c05a0ece9904273f95e97a773ba3f51206e34f67b1b27fb81",
+        "os": "linux",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxfmt-x86_64-unknown-linux-musl.tar.gz",
+        "file": "oxfmt-x86_64-unknown-linux-musl",
+        "sha256": "2518940fd7c22ba392e0f7d5227dfc558012467f151b793f4a0c64366e0a7238",
+        "os": "linux",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxfmt-aarch64-apple-darwin.tar.gz",
+        "file": "oxfmt-aarch64-apple-darwin",
+        "sha256": "e070767df75a3962e7e50a66e6d003445e130ee1caa00f800384bf050587f801",
+        "os": "macos",
+        "cpu": "arm64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxfmt-x86_64-apple-darwin.tar.gz",
+        "file": "oxfmt-x86_64-apple-darwin",
+        "sha256": "729503e17e5f67df32caae50345796c8477a0746132f87769ef9ba09b6ac7e15",
+        "os": "macos",
+        "cpu": "x86_64"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.61.0/oxfmt-x86_64-pc-windows-msvc.zip",
+        "file": "oxfmt-x86_64-pc-windows-msvc.exe",
+        "sha256": "2882647d85d6ef09eb467fd0b8463232e27b872de282c6663b7144ea5423aaaa",
+        "os": "windows",
+        "cpu": "x86_64"
+      }
+    ]
+  },
   "shfmt": {
     "binaries": [
       {

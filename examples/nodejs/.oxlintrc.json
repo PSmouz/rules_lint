@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "eslint/no-unused-vars": "error",
+    "eslint/prefer-template": "error"
+  },
+  "env": {
+    "builtin": true
+  }
+}

@@ -36,6 +36,20 @@ UNIQUE_TOOLS = sets.to_list(sets.make(TOOLS.values()))
     for t in UNIQUE_TOOLS
 ]
 
+write_file(
+    name = "mock_oxfmt_sh",
+    out = "mock_oxfmt.sh",
+    content = [
+        "#!/usr/bin/env bash",
+        "echo + oxfmt $*",
+    ],
+)
+
+sh_binary(
+    name = "oxfmt",
+    srcs = ["mock_oxfmt.sh"],
+)
+
 format_multirun(
     name = "format",
     cc = ":mock_clang-format.sh",
@@ -84,6 +98,11 @@ format_multirun(
         "--custom-fix",
         "--flag",
     ],
+)
+
+format_multirun(
+    name = "format_with_oxfmt",
+    javascript = ":oxfmt",
 )
 
 sh_test(
