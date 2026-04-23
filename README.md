@@ -29,6 +29,11 @@ Linters which are not language-specific:
 
 - [keep-sorted]
 
+For Oxc tooling, `rules_lint` supports both built-in Rust binaries and user-supplied npm binaries.
+Use npm-backed `oxlint`/`oxfmt` when you want native JavaScript or TypeScript config files such as
+`oxlint.config.ts` and `oxfmt.config.ts`; keep the built-in labels as the fast path for JSON/JSONC-oriented setups.
+Oxc also ships parser, transformer, resolver, and minifier tooling, but `rules_lint` only integrates the lint and format surfaces.
+
 | Language               | Formatter                 | Linter(s)                                               |
 | ---------------------- | ------------------------- | ------------------------------------------------------- |
 | C / C++                | [clang-format]            | [clang-tidy] or [cppcheck]                              |

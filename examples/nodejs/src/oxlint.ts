@@ -1,5 +1,3 @@
-const personName = "world";
-const greeting = "Hello, " + personName;
-const unused = 1;
+const greeting = 'Hello from Oxlint'
 
-console.log(greeting);
+console.log(greeting)
