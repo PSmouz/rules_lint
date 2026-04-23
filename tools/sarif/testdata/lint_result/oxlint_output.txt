@@ -1,0 +1,4 @@
+src/oxlint.ts:1:7: Variable 'unused' is declared but never used. Unused variables should start with a '_'. [Error/eslint(no-unused-vars)]
+src/oxlint.ts:1:24: Unexpected string concatenation. [Error/eslint(prefer-template)]
+
+2 problems
