@@ -19,9 +19,9 @@ eslint = lint_eslint_aspect(
 eslint_test = lint_test(aspect = eslint)
 
 oxlint = lint_oxlint_aspect(
-    binary = Label("@aspect_rules_lint//lint:oxlint_bin"),
+    binary = Label("//tools/lint:oxlint"),
     configs = [
-        Label("//:.oxlintrc.json"),
+        Label("//:oxlint_config"),
     ],
 )
 

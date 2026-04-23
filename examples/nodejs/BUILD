@@ -7,7 +7,6 @@ npm_link_all_packages(name = "node_modules")
 
 exports_files(
     [
-        ".oxlintrc.json",
         ".swcrc",
         ".vale.ini",
     ],
@@ -32,4 +31,16 @@ js_library(
 js_library(
     name = "prettierrc",
     srcs = ["prettier.config.cjs"],
+)
+
+js_library(
+    name = "oxfmt_config",
+    srcs = ["oxfmt.config.ts"],
+    deps = [":node_modules/oxfmt"],
+)
+
+js_library(
+    name = "oxlint_config",
+    srcs = ["oxlint.config.ts"],
+    deps = [":node_modules/oxlint"],
 )

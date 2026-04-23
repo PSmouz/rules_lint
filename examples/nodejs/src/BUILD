@@ -81,6 +81,6 @@ format_test(
         "(special_char)/[square]/hello.md",
         "(special_char)/[square]/hello.ts",
     ],
-    javascript = "@aspect_rules_lint//format:oxfmt",
+    javascript = "//tools/format:oxfmt",
     markdown = "//tools/format:prettier",
 )

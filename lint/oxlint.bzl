@@ -16,6 +16,11 @@ oxlint = lint_oxlint_aspect(
 
 The configuration file follows Oxlint's ESLint-compatible JSON format. Oxlint
 automatically discovers the appropriate `tsconfig.json` for each source file.
+
+If you want native `oxlint.config.ts` support, use the npm-backed `oxlint`
+binary instead of the built-in standalone binary. The Node runtime can execute
+the TypeScript config, while the built-in binary should be treated as the
+JSON/JSONC-oriented path.
 """
 
 load("@aspect_rules_js//js:libs.bzl", "js_lib_helpers")
@@ -29,7 +34,7 @@ def _gather_inputs(ctx, srcs, files):
     inputs = list(srcs)
     inputs.extend(ctx.files._config_files)
 
-    js_inputs = getattr(ctx.rule.attr, "deps", []) + files
+    js_inputs = ctx.attr._config_files + getattr(ctx.rule.attr, "deps", []) + files
 
     if hasattr(ctx.rule.attr, "tsconfig"):
         js_inputs.append(ctx.rule.attr.tsconfig)
@@ -96,7 +101,7 @@ def oxlint_action(ctx, executable, srcs, stdout, exit_code = None, format = "def
             patch_cfg_env = env,
             stdout = stdout,
             exit_code = exit_code,
-            env = env,
+            env = env | {"BAZEL_BINDIR": ctx.bin_dir.path},
             mnemonic = _MNEMONIC,
             progress_message = "Linting %{label} with Oxlint",
         )
@@ -117,7 +122,7 @@ def oxlint_action(ctx, executable, srcs, stdout, exit_code = None, format = "def
         outputs = outputs,
         command = command.format(oxlint = executable.path, stdout = stdout.path),
         arguments = [args],
-        env = env,
+        env = env | {"BAZEL_BINDIR": ctx.bin_dir.path},
         mnemonic = _MNEMONIC,
         progress_message = "Linting %{label} with Oxlint",
         tools = [executable],
