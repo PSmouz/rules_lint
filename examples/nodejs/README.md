@@ -4,6 +4,12 @@ This example demonstrates how to set up formatting and linting for Node.js ecosy
 
 ## Supported Tools
 
+This example deliberately shows both choices available to JavaScript and TypeScript projects:
+
+- Use Prettier and ESLint when you want the broadest plugin ecosystem and established project compatibility.
+- Use npm-backed Oxfmt and Oxlint when you want Oxc's speed and native `oxfmt.config.ts` / `oxlint.config.ts` support.
+- Use the built-in `@aspect_rules_lint//format:oxfmt` and `@aspect_rules_lint//lint:oxlint_bin` labels when JSON/JSONC Oxc configuration is enough and you prefer the standalone Rust binaries.
+
 ### Formatters
 
 - **Oxfmt** - npm-backed formatter used for the JavaScript formatter bundle so `oxfmt.config.ts` works the same inside and outside Bazel
@@ -27,6 +33,70 @@ This example demonstrates how to set up formatting and linting for Node.js ecosy
 - See `tools/lint/linters.bzl` for how to set up each linter aspect
 
 5. Perform formatting and linting using `aspect format` and `aspect lint`
+
+## JavaScript and TypeScript Oxc setup
+
+Install Oxc from npm when you need native JavaScript or TypeScript config files:
+
+```json
+{
+  "devDependencies": {
+    "oxfmt": "^0.46.0",
+    "oxlint": "^1.61.0"
+  }
+}
+```
+
+Declare the npm-backed binaries just like ESLint or Prettier:
+
+```starlark
+load("@npm//:oxfmt/package_json.bzl", oxfmt = "bin")
+load("@npm//:oxlint/package_json.bzl", oxlint = "bin")
+
+oxfmt.oxfmt_binary(
+    name = "oxfmt",
+    data = ["//:oxfmt_config"],
+    env = {"BAZEL_BINDIR": "."},
+    fixed_args = [
+        "--config=\"$$JS_BINARY__RUNFILES\"/$(rlocationpath //:oxfmt_config)",
+    ],
+)
+
+oxlint.oxlint_binary(
+    name = "oxlint",
+    env = {"BAZEL_BINDIR": "."},
+)
+```
+
+Then pass those labels to `rules_lint`:
+
+```starlark
+format_multirun(
+    name = "format",
+    javascript = "//tools/format:oxfmt",
+)
+
+oxlint = lint_oxlint_aspect(
+    binary = Label("//tools/lint:oxlint"),
+    configs = [Label("//:oxlint_config")],
+)
+```
+
+The built-in labels remain useful for simpler Oxc setups:
+
+```starlark
+format_multirun(
+    name = "format",
+    javascript = "@aspect_rules_lint//format:oxfmt",
+)
+
+oxlint = lint_oxlint_aspect(
+    binary = Label("@aspect_rules_lint//lint:oxlint_bin"),
+    configs = [Label("//:.oxlintrc.json")],
+)
+```
+
+Choose the npm-backed path for `oxfmt.config.ts` or `oxlint.config.ts`. Choose the built-in path when JSON/JSONC config files are enough.
 
 ## Example Code
 

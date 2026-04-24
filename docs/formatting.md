@@ -68,6 +68,20 @@ indent_style = space
 indent_size = 4
 ```
 
+### JavaScript formatter choices
+
+For JavaScript-family files, `javascript = ...` can point at either Prettier or Oxfmt.
+
+Use Prettier when you want the broadest formatter ecosystem and plugin compatibility. Declare the npm-backed Prettier binary
+with `rules_js`, pass your config file in `data`, and use `fixed_args` to pass `--config` when needed.
+
+Use npm-backed Oxfmt when you want Oxc formatting with native JavaScript or TypeScript config files such as
+`oxfmt.config.ts`. This follows the same pattern as Prettier: install `oxfmt` from npm, declare an `oxfmt_binary`, add
+the config target to `data`, and pass `--config` in `fixed_args`.
+
+Use `@aspect_rules_lint//format:oxfmt` when you want the built-in standalone Oxfmt binary. This is convenient for
+JSON/JSONC-oriented setups, but it does not provide the Node runtime needed to execute `oxfmt.config.ts`.
+
 ### Custom formatter arguments
 
 You can override the default command-line arguments passed to formatters by specifying custom arguments for each language and mode:

@@ -2,8 +2,30 @@
 
 Typical usage:
 
-Oxlint is provided as a built-in tool by rules_lint. To use the built-in version,
-create the linter aspect, typically in `tools/lint/linters.bzl`:
+Oxlint can be used either from npm or as a built-in standalone binary. Use the
+npm-backed binary when you want native `oxlint.config.ts` support:
+
+```starlark
+load("@npm//:oxlint/package_json.bzl", oxlint_bin = "bin")
+
+oxlint_bin.oxlint_binary(
+    name = "oxlint",
+    env = {"BAZEL_BINDIR": "."},
+)
+```
+
+Then create the linter aspect, typically in `tools/lint/linters.bzl`:
+
+```starlark
+load("@aspect_rules_lint//lint:oxlint.bzl", "lint_oxlint_aspect")
+
+oxlint = lint_oxlint_aspect(
+    binary = Label("//tools/lint:oxlint"),
+    configs = [Label("//:oxlint_config")],
+)
+```
+
+The built-in version is also available:
 
 ```starlark
 load("@aspect_rules_lint//lint:oxlint.bzl", "lint_oxlint_aspect")
@@ -17,10 +39,8 @@ oxlint = lint_oxlint_aspect(
 The configuration file follows Oxlint's ESLint-compatible JSON format. Oxlint
 automatically discovers the appropriate `tsconfig.json` for each source file.
 
-If you want native `oxlint.config.ts` support, use the npm-backed `oxlint`
-binary instead of the built-in standalone binary. The Node runtime can execute
-the TypeScript config, while the built-in binary should be treated as the
-JSON/JSONC-oriented path.
+The Node runtime can execute TypeScript config files, while the built-in binary
+should be treated as the JSON/JSONC-oriented path.
 """
 
 load("@aspect_rules_js//js:libs.bzl", "js_lib_helpers")

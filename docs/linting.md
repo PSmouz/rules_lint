@@ -107,6 +107,20 @@ Each linter aspect accepts the configuration file(s) as an argument.
 To specify whether a certain lint rule should be a warning or error, follow the documentation for the linter.
 rules_lint provides the exit code of the linter process to allow the desired developer experiences listed above.
 
+### JavaScript linter choices
+
+For JavaScript and TypeScript targets, use ESLint when you want the broadest rule and plugin ecosystem. Install ESLint from
+npm, declare an ESLint binary with `rules_js`, and pass that binary to `lint_eslint_aspect`.
+
+Use npm-backed Oxlint when you want Oxc's linter and native JavaScript or TypeScript config files such as
+`oxlint.config.ts`. Install `oxlint` from npm, declare an `oxlint_binary`, and pass that binary to `lint_oxlint_aspect`.
+The aspect accepts the config target through `configs`; when that target is a `js_library`, its npm dependencies are also
+made available to the lint action.
+
+Use `@aspect_rules_lint//lint:oxlint_bin` when you want the built-in standalone Oxlint binary. This is convenient for
+JSON/JSONC-oriented configs such as `.oxlintrc.json`, but it does not provide the Node runtime needed to execute
+`oxlint.config.ts`.
+
 ## Ignoring targets
 
 To ignore a specific target, you can use the `no-lint` tag. This will prevent the linter from visiting the target.
