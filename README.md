@@ -29,9 +29,22 @@ Linters which are not language-specific:
 
 - [keep-sorted]
 
-For Oxc tooling, `rules_lint` supports both built-in Rust binaries and user-supplied npm binaries.
-Use npm-backed `oxlint`/`oxfmt` when you want native JavaScript or TypeScript config files such as
-`oxlint.config.ts` and `oxfmt.config.ts`; keep the built-in labels as the fast path for JSON/JSONC-oriented setups.
+### JavaScript and TypeScript tools
+
+For JavaScript-family files, users can choose between the familiar Prettier/ESLint stack and Oxc's formatter/linter.
+
+| Use case | Formatter | Linter |
+| -------- | --------- | ------ |
+| Maximum ecosystem compatibility | [Prettier] | [ESLint] |
+| Fast Oxc lint/format with native JavaScript or TypeScript config files | npm-backed [oxfmt] | npm-backed [Oxlint] |
+| Fast built-in Oxc binaries with JSON/JSONC config files | `@aspect_rules_lint//format:oxfmt` | `@aspect_rules_lint//lint:oxlint_bin` |
+
+The npm-backed Oxc path matches how ESLint and Prettier are commonly wired in Bazel: install the tool from `package.json`,
+declare a `rules_js` binary target, and pass that label to `rules_lint`. Choose this path for `oxlint.config.ts` and
+`oxfmt.config.ts`, because those config files are executed by the Node runtime.
+
+The built-in Oxc labels are still available for users who prefer a statically downloaded Rust binary. Treat those as the
+JSON/JSONC-oriented fast path, for example `.oxlintrc.json` or an oxfmt config format supported by the standalone binary.
 Oxc also ships parser, transformer, resolver, and minifier tooling, but `rules_lint` only integrates the lint and format surfaces.
 
 | Language               | Formatter                 | Linter(s)                                               |
