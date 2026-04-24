@@ -36,7 +36,7 @@ For JavaScript-family files, users can choose between the familiar Prettier/ESLi
 | Use case | Formatter | Linter |
 | -------- | --------- | ------ |
 | Maximum ecosystem compatibility | [Prettier] | [ESLint] |
-| Fast Oxc lint/format with native JavaScript or TypeScript config files | npm-backed [oxfmt] | npm-backed [Oxlint] |
+| Fast Oxc lint/format with native JavaScript or TypeScript config files | npm-backed [oxfmt] | npm-backed [oxlint] |
 | Fast built-in Oxc binaries with JSON/JSONC config files | `@aspect_rules_lint//format:oxfmt` | `@aspect_rules_lint//lint:oxlint_bin` |
 
 The npm-backed Oxc path matches how ESLint and Prettier are commonly wired in Bazel: install the tool from `package.json`,
@@ -60,7 +60,7 @@ Oxc also ships parser, transformer, resolver, and minifier tooling, but `rules_l
 | HTML                   | [Prettier]                |                                                         |
 | JSON                   | [Prettier] or [oxfmt]     |                                                         |
 | Java                   | [google-java-format]      | [pmd] , [Checkstyle], [Spotbugs]                        |
-| JavaScript             | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
+| JavaScript             | [Prettier] or [oxfmt]     | [ESLint] or [oxlint]                                    |
 | HTML templates         | [djlint]                  |                                                         |
 | Jsonnet                | [jsonnetfmt]              |                                                         |
 | Kotlin                 | [ktfmt]                   | [ktlint]                                                |
@@ -77,8 +77,8 @@ Oxc also ships parser, transformer, resolver, and minifier tooling, but `rules_l
 | Starlark               | [Buildifier]              | [Buildifier]                                            |
 | Swift                  | [SwiftFormat] (1)         |                                                         |
 | TOML                   | [taplo]                   |                                                         |
-| TSX                    | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
-| TypeScript             | [Prettier] or [oxfmt]     | [ESLint] or [Oxlint]                                    |
+| TSX                    | [Prettier] or [oxfmt]     | [ESLint] or [oxlint]                                    |
+| TypeScript             | [Prettier] or [oxfmt]     | [ESLint] or [oxlint]                                    |
 | Vue                    | [oxfmt]                   |                                                         |
 | YAML                   | [yamlfmt]                 | [yamllint]                                              |
 | XML                    | [prettier/plugin-xml]     |                                                         |
