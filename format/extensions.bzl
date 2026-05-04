@@ -18,8 +18,8 @@ def _format_impl(module_ctx):
         for r in mod.tags.google_java_format:
             http_jar(
                 name = r.name,
-                sha256 = "33068bbbdce1099982ec1171f5e202898eb35f2919cf486141e439fc6e3a4203",
-                url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
+                sha256 = "bfb7f9ead6cd328389bc2da53860443bc0e805dfd08cc889bfdf43b26cb2a6e8",
+                url = "https://github.com/google/google-java-format/releases/download/v1.35.0/google-java-format-1.35.0-all-deps.jar",
             )
         for r in mod.tags.ktfmt:
             http_jar(
